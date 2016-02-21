@@ -1,8 +1,16 @@
 ﻿# Cookbook
 
-No more thinking about what to eat, and what ingredients to get! This cookbook helps you to create a cookbook and generate your shoppoing list for you!
+No more thinking about what to eat, and what ingredients to get! This cookbook helps you to create a cookbook and generate your shopping list for you!
 
-## View a list of recipes
+## Tools used
+- Visual Studio 2015
+- The Karma Test Adapter plug-in
+- The GitHub Extension for Visual Studio
+
+
+## Features
+
+### View a list of recipes
 
 The main page of the applications shows a list of recipes with their rating. It looks somewhat like this:
 
