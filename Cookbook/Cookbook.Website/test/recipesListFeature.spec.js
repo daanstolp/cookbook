@@ -1,4 +1,4 @@
-﻿xdescribe('Feature: recipes list', function () {
+﻿describe('Feature: recipes list', function () {
     var $controller,
         $httpBackend,
         $rootScope,
@@ -11,10 +11,9 @@
             $httpBackend = _$httpBackend_;
             $rootScope = _$rootScope_;
 
-            $scope = $rootScope.$new();
+            setupTestData();
 
             controller = $controller('recipesController', {
-                $scope: $scope,
                 recipesService: recipesService
             });
         });
@@ -22,6 +21,7 @@
 
     it('should display a list of recipes', function () {
         $rootScope.$apply();
+        $httpBackend.flush();
 
         expect(controller.recipes[0]).toEqual({
             title: "Chili con carne",
@@ -36,4 +36,16 @@
             rating: 2
         });
     });
+
+    function setupTestData() {
+        $httpBackend.whenGET('/recipes')
+            .respond({
+                data: [
+                    { title: "Chili con carne", rating: 4 },
+                    { title: "Nacho's", rating: 5 },
+                    { title: "Andijviestampot", rating: 2 }
+                ]
+            });
+    }
+
 });

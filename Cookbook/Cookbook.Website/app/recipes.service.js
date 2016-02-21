@@ -3,15 +3,30 @@
 
     angular
         .module('cookbook')
-        .service('recipesService', recipesService);
+        .factory('recipesService', recipesService);
 
-    recipesService.$inject = ['$http'];
+    recipesService.$inject = ['$http', '$q'];
 
-    function recipesService($http) {
-        var ref = this;
+    function recipesService($http, $q) {
+        var recipesService = {
+            getRecipes: getRecipes
+        };
 
-        ref.getRecipes = getRecipes;
+        return recipesService;
 
-        function getRecipes() { }
+        ////////////
+
+        function getRecipes() {
+            var deferral = $q.defer();
+
+            $http.get('/recipes')
+                .then(function (result) {
+                    deferral.resolve(result.data);
+                }, function (error) {
+                    deferral.reject();
+                });
+
+            return deferral.promise;
+        }
     }
 })();
