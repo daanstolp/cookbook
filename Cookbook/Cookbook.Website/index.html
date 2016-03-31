@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="cookbook">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,15 +33,22 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" ng-controller="recipesController as vm">
 
-        <div class="starter-template">
-            <h1>Bootstrap starter template</h1>
-            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-        </div>
+        <h1>Recipes</h1>
 
+        <ul ng-cloak>
+            <li ng-repeat="recipe in vm.recipes">{{recipe.title}}</li>
+        </ul>
     </div>
 
-
+    <!-- Libraries -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <!-- Application -->
+    <script src="app/app.js"></script>
+    <script src="app/recipes.controller.js"></script>
+    <script src="app/recipes.service.js"></script>
 </body>
 </html>
